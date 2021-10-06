@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hotel Booking App</title>
+        <link th:if="${mode == 'Development'}" rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+        <link th:if="${mode == 'Production'}" rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.min.css}"/>
+        <script type="text/javascript" src="/static/angular.min.js" th:src="@{/angular.min.js}"></script>
+        <script type="text/javascript" src="/static/app/bookings.controller.js" th:src="@{/app/bookings.controller.js}"></script>
+        <script type="text/javascript" src="/static/app/app.module.js" th:src="@{/app/app.module.js}"></script>
+        <!--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>-->
+        <script type="text/javascript" src="/static/jquery-3.3.1.min.js" th:src="@{/jquery-3.3.1.js}"></script>
+        <script type="text/javascript" src="/static/app/transition.js" th:src="@{/app/transition.js}"></script>
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+
+            .load{
+                display: none;
+            }
+
+            /*    The Modal (background)*/
+            .modal {
+                display: none; /* Hidden by default*/
+                position: fixed; /* Stay in place*/
+                z-index: 1; /* Sit on top
+                    padding-top: 100px; /* Location of the box*/
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width*/
+                height: 100%; /* Full height*/
+                overflow: auto; /* Enable scroll if needed*/
+                background-color: rgb(0,0,0); /* Fallback color*/
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity  */
+            }
+
+            /* Modal Content*/
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            /* The Close Button*/
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body ng-app="app" ng-controller="BookingsController as vm" class="ng-scope">
+
+
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Booking Demo</a>
+                </div>
+                <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${usrname}" style="margin-right: 10px;">Signed in as Anonymus!</p>
+            </nav>
+
+        </header>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <!--  <span class="close">&times;</span>-->
+
+                 <table width="100%">
+                     <tr align="center">
+                         <td align="right">
+                             <img src="img/checkGood.png" width="35" height="35"  alt="New"/>
+                         </td>
+                         <td align="center">
+                             <b>New Hotel Booking</b>
+                         </td>
+                         <td align="left">
+                              <input type="button" class="btn-danger close" value="X" id="close-new-booking">
+
+                         </td>
+                     </tr>
+                 </table>
+
+                 <div id="nErrornew-booking" class="error"></div>
+                 <img src="img/loader.gif" width="32" height="32"  alt="" id="nLoadnew-booking" class="load"/>
+
+
+                 <table align="center" width="100%" border="0">
+                     <tr>
+                         <td align="right" width="40%">
+                             Hotel Name: <br>
+                         </td>
+                         <td width="60%">
+
+                             <input type="text" id="nHotelName" size="15" maxlength="50" placeholder="Name of the Hotel"><br>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td align="right" width="40%">
+                             Price Night: <br>
+                         </td>
+                         <td width="60%">
+
+                             <input type="text" id="nPriceNight" size="15" maxlength="10" placeholder="Price per Night"><br>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td align="right" width="40%">
+                             Number of Nights: <br>
+                         </td>
+                         <td>
+                             <select id="nNbOfNights" width="60%">
+                                 <option value=''>[ Num ]</option>
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                             </select>
+                         </td>
+                     </tr>
+                 </table>
+                 <table align="center" width="100%" border="0">
+                     <tr>
+                         <td colspan="2">
+                             <hr class="hr">
+                         </td>
+                     <tr>
+                         <td align="center" width="50%">
+                             <input type="button" class="btn btn-danger btn-group-lg" value="Exit" id="exit-new-booking">
+                         </td>
+                         <td align="center" width="50%">
+                             <input type="button" class="btn btn-primary btn-group-lg" value="Add" id="ok-new-booking" >
+                         </td>
+                     </tr>
+                 </table>
+
+             </div>
+
+         </div>
+
+        <table border="0" width="100%">
+            <tr>
+                <td width="10%">
+
+                </td>
+
+                <td>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-offset-2 col-lg-8">
+
+                                <div class="btn-group" role="group">
+                                    <button ng-click="vm.getAll()" type="button" class="btn btn-default">All</button>
+                                    <button ng-click="vm.getAffordable()" type="button" class="btn btn-default">Less than 100$</button>
+                                    <button id="btnNewBooking" class="btn-success col-12">New Booking</button>
+                                    <button id="preview" class="btn-success col-12">New Preview</button>
+                                </div>
+
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Hotel</th>
+                                        <th>Nights</th>
+                                        <th>Price / Night</th>
+                                        <th>Total Price</th>
+                                        <th style="width: 90px"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="booking in vm.bookings">
+
+                                        <td>{{booking.hotelName}}</td>
+                                        <td>{{booking.nbOfNights}}</td>
+                                        <td>{{booking.pricePerNight}}</td>
+                                        <td>{{booking.totalPrice}}</td>
+
+                                        <td>
+                                            <button class="btn btn-danger" ng-click="vm.deleteBooking(booking.id)">Delete</button>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+                <td width="10%">
+
+                </td>
+            </tr>
+        </table>
+
+
+
+
+         <footer class="footer" th:text=" ${#dates.format(datetime, 'dd MM yyyy HH:mm')} +' HOY'" style="position: absolute; botom:0; background-color: #f5f5f5;">
+             <div class="container">
+                 <p class="text-muted">Page was rendered today</p>
+             </div>
+         </footer>
+
+         <script>
+
+    /*
+             var load = document.getElementById('nLoadnew-booking');
+
+             abc();
+
+
+             function abc() {
+                 load.style.display = "none";
+             }
+
+
+
+             var no_new_booking = document.getElementById('no-new-booking');
+
+             var modal = document.getElementById('myModal');
+
+             // Get the button that opens the modal
+             var btn = document.getElementById("btnNewBooking");
+
+             // Get the <span> element that closes the modal
+             var span = document.getElementsByClassName("close")[0];
+
+             // When the user clicks the button, open the modal
+             btn.onclick = function() {
+                 modal.style.display = "block";
+             }
+
+             no_new_booking.onclick = function() {
+                 modal.style.display = "none";
+             }
+             // When the user clicks on <span> (x), close the modal
+             span.onclick = function() {
+                 modal.style.display = "none";
+             }
+
+             // When the user clicks anywhere outside of the modal, close it
+             window.onclick = function(event) {
+                 if (event.target == modal) {
+                     modal.style.display = "none";
+                 }
+             }
+    */
+         </script>
+
+        <script type="text/javascript" src="../static/app/index.js" th:src="@{/app/index.js}"></script>
+
+     </body>
+ </html>
