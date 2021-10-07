@@ -1,2 +1,19 @@
-/Users/orlandoluis/Documents/Proyectos IntelilJ/BookingDemo/src/main/java/romaniancoder/booking/BookingDemoApplication.java
-/Users/orlandoluis/Documents/Proyectos IntelilJ/BookingDemo/src/main/java/romaniancoder/booking/DemoController.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\format\CalculateSumResponse.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\format\HappyNumberRequest.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\service\CharacterService.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\entity\Character.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\RickMortyApplication.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\controller\EpisodeController.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\format\EpisodeResponse.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\format\CharacterResponse.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\repository\CharacterRepository.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\entity\Episode.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\view\ViewController.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\controller\CharacterController.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\entity\Location.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\service\EpisodeService.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\format\HappyNumber.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\model\format\HappyNumberResponse.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\utils\Utils.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\repository\EpisodeRepository.java
+C:\Users\DAVID-PC\OneDrive\Escritorio\clone\RickMortyApi\src\main\java\com\rickmorty\api\controller\UtilsController.java
